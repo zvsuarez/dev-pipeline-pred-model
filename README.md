@@ -1,6 +1,5 @@
 # Development Pipeline for Life Expectancy Predictive Model
 
-## Workflow
 Files are numbered as following:
 1. Exploratory Data Analysis - Exploring the distribution, skewness, and nature of features
 2. Feature Selection - Selecting the most viable features using various confluences (`Variable Inflation Factor`, `Feature Importance Score`, `Permutation Importance`, `SHAP`, `Partial Dependence`)
