@@ -1,0 +1,91 @@
+Start with:
+RandomForestRegressor()
+Optionally test SVR(kernel='rbf'), LinearRegression, PolynomialRegression
+
+NUMERICAL TARGET
+- Numerical Features
+    Plot histogram + boxplot for each numerical variable (use a loop).
+    - Univariate: Histogram/Boxplot/Violin
+    - Bivariate: Scatter Plot vs Target/Correlation Heatmap
+    - Multivariate: Pairplot (<5 variables)(after correlation heatmap if >5 variables)
+    - Skewness (median impute if skew issue/mean or knn impute if no issue)
+    - Outliers: Winsorisation/IQR basedremoval/RobustScaler
+- Categorical Features
+    - Cardinality
+    - Bar plots/violin plots
+- Rare feature labels
+- Target QQ Plot (Normality) / Histogram / KDE Plot
+- Error Distribution Plot (evaluation)
+
+CATEGORICAL TARGET
+- Numerical Features
+    - Univariate: Histogram/Boxplot/Violin
+    - Bivariate: Barplot/Boxplot vs Target
+    - Multivariate: Pairplot (<5 variables) / Correlation Heatmap(multicollinearity)
+    - Skewness (median impute if skew issue/mean or knn impute if no issue)
+    - Outliers: Winsorisation/IQR basedremoval/RobustScaler
+- Categorical Features
+    - Cardinality
+    - Bar plots/violin plots
+- Rare feature labels
+- Target Barplot
+- Target Encoding
+
+
+FEATURE SELECTION
+- Variable Inflation Factor (VIF)
+- feature_importance_ method
+- RFE, SFS, LassoCV
+- SHAP/PDP/Permutation Importance
+- SelectKBest/ANOVA
+
+
+SKEWNESS
+- Transform if greater than > 1
+- Right-skew: log/sqrt/boxcox(positive only)
+- Left-skew: square/cube
+- Mixed-skew with 0 or negative: Yeo-Johnson
+
+
+________PROJECT_______
+
+Life_Expectancy - Yeo Johnson transform / inverse predicted values
+Numerical columns with empty target - drop
+Numerical columns with target - impute median(w/ skew issue, mean w/o skew issue)
+Numerical columns:
+    - transform + winsorize (skew+outlier)
+    - transform (skew only)
+    - winsorize (outlier only)
+- Get feature importance / remove multicollinearity
+RobustScaler or YeoJohnson + StandardScaler (gridsearch)
+
+CATEGORICAL
+- Country: leave one out encoding using Income_Composition
+- Status: 1 hot encoding
+
+NUMERICAL 
+- Mean Impute groupby countries before transform
+- Median Impute based on status if all groupby country val is null
+
+Life_Expectancy: yeojohnson
+Alcohol: yeojohnson
+Thinness_1to19: yeojohnson
+Infant_Deaths: yeojohnson + winsor
+Total_Expenditure: yeojohnson + winsor
+Gdp: yeojohnson + winsor
+Schooling: yeojohnson + winsor
+
+Adult_Mortality: boxcox + winsor
+Hiv/Aids: boxcox
+
+Income_Composition: square
+
+Polio: reflect + log
+Diphtheria: reflect + log
+
+Bmi: scale
+
+
+
+
+
